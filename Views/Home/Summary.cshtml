@@ -1,0 +1,36 @@
+﻿@model CartViewModel
+
+<section class="container">
+    <div class="row-fluid paddingb45">
+        <div class="cart span5">
+            <fieldset>
+                <legend>
+                    <h3>Cart</h3>
+                </legend>
+                <form class="form-inline clearfix">
+                    <div class="dropdown dropup form-control pull-left">
+                        <div class="btn dropdown-toggle" data-toggle="dropdown">
+                            <span>Cart value:</span>
+                            <span>@Model.CartValue.ToString("F")</span>
+                            <span class="caret"></span>
+                        </div>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            @foreach (var f in Model.Flowers)
+                            {
+                                <li>
+                                    <span>@f.Name</span>,
+                                    <span>@f.Amount</span>,
+                                    <span>@f.Price.ToString("F")</span>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                            }
+                        </ul>
+                    </div>
+                    <a href="/cart/checkout" class="btn btn-info form-control pull-right">
+                        <i class="icon-shopping-cart icon-white"></i> Checkout
+                    </a>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,51 @@
+﻿@model CartViewModel
+
+<section class="container">
+    <div class="row-fluid paddingb45">
+        <div class="cart span5">
+            <fieldset>
+                <legend>
+                    <h3>Cart</h3>
+                </legend>
+                <div class="dropdown">
+                    <div class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span>Cart value:</span>
+                        <span>@Model.CartValue.ToString("F")</span>
+                        <span class="caret"></span>
+                    </div>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        @foreach (var f in Model.Flowers)
+                        {
+                            <li>
+                                <span>@f.Name</span>,
+                                <span>@f.Amount</span>,
+                            <span>@f.Price.ToString("F")</span>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="span5" data-bind="visible: cart.showSubmitOrderForm">
+            <form class="form-inline" action="/cart/checkout" method="POST">
+                <fieldset data-bind="with: cart">
+                    <legend>
+                        <h3>Customer details</h3>
+                    </legend>
+                    <h5>Name</h5>
+                    <input class="input-large" type="text" name="customerName" /><br />
+
+                    <h5>Address</h5>
+                    <input class="input-large" type="text" name="customerAddress" /><br />
+                    <hr>
+                    <button class="btn btn-info" type="submit">Submit order</button>
+
+                    <a href="/" style="display: inline-block">
+                        <span class="btn">Cancel</span>
+                    </a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
