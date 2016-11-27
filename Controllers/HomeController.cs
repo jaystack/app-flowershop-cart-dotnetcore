@@ -90,7 +90,7 @@ namespace App.Flowershop.Cart.Controllers
 
             var selectedFlowers = await getFlowersByIdAsync(new string[] { id });
 
-            cart.Items.Add(selectedFlowers.First().Id);
+            cart.Items.Add(selectedFlowers.First()._id);
             setCartCookie(JsonConvert.SerializeObject(cart));
 
             return StatusCode(StatusCodes.Status200OK);
