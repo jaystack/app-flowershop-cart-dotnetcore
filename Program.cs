@@ -16,7 +16,7 @@ namespace App.Flowershop.Cart
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:3000/")
+                .UseUrls("http://*:3000/")
                 .Build();
 
             host.Run();
