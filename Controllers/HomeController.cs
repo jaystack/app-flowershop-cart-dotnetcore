@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using App.Flowershop.Cart.ViewModels;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using SystemEndpoints;
 
 namespace App.Flowershop.Cart.Controllers
 {
@@ -121,7 +122,8 @@ namespace App.Flowershop.Cart.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(config.Value.DataApi);
+                IStore store = new Store(config.Value.hosts);
+                client.BaseAddress = new Uri(store.GetServiceAddress(config.Value.DataApi));
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -142,7 +144,8 @@ namespace App.Flowershop.Cart.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(config.Value.DataApi);
+                IStore store = new Store(config.Value.hosts);
+                client.BaseAddress = new Uri(store.GetServiceAddress(config.Value.DataApi));
 
                 var content = new FormUrlEncodedContent(formContent.ToArray());
 
