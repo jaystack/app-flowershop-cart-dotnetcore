@@ -26,7 +26,7 @@ namespace App.Flowershop.Cart.Controllers
             config = optionsAccessor;
         }
 
-        [HttpGet("/summary")]
+        [HttpGet("/cart/summary")]
         public async Task<IActionResult> Summary()
         {
             var cart = getCartFromCookie();
@@ -45,7 +45,7 @@ namespace App.Flowershop.Cart.Controllers
         }
 
 
-        [HttpPost("/checkout")]
+        [HttpPost("/cart/checkout")]
         public async Task<IActionResult> CheckoutPost(string customerName, string customerAddress)
         {
             var cart = getCartFromCookie();
@@ -54,7 +54,7 @@ namespace App.Flowershop.Cart.Controllers
             {
                 { "customerName", customerName},
                 { "customerAddress", customerAddress },
-                { "oids", JsonConvert.SerializeObject(cart.Items) },
+                { "flowers", JsonConvert.SerializeObject(cart.Items) },
             });
 
             if (result.StatusCode == System.Net.HttpStatusCode.Created)
@@ -66,7 +66,7 @@ namespace App.Flowershop.Cart.Controllers
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
         }
 
-        [HttpGet("/checkout")]
+        [HttpGet("/cart/checkout")]
         public async Task<IActionResult> CheckoutGet()
         {
             var cart = getCartFromCookie();
@@ -84,7 +84,7 @@ namespace App.Flowershop.Cart.Controllers
             return PartialView("Checkout", data);
         }
 
-        [HttpGet("/add/{id}")]
+        [HttpGet("/cart/add/{id}")]
         public async Task<IActionResult> Add(string id)
         {
             var cart = getCartFromCookie();
