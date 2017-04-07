@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SystemEndpoints.Models;
+﻿using System.Collections.Generic;
+using SystemEndpointsDotnetCore.Models;
 
 namespace App.Flowershop.Cart
 {
@@ -10,9 +7,6 @@ namespace App.Flowershop.Cart
     {
         public string DataApi { get; set; }
 
-        public List<Endpoint> hosts
-        {
-            get; set;
-        }
+        public List<Endpoint> hosts { get; set; } = new List<Endpoint>();
     }
 }
